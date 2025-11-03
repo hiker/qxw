@@ -716,7 +716,7 @@ int st_tlf,st_vltlf,st_tmtlf;  // count of (free) lights too long for filler
 
 // calculate numbers for squares and grid-order-indices of treated squares
 void donumbers(void) {
-  int d,i,i0,j,num=1,goi=0;
+  int d,i,i0,j,v,num=1,goi=0;
 
   for(j=0;j<height;j++) for(i=0;i<width;i++) gsq[i][j].number=-1,gsq[i][j].goi=-1;
   for(j=0;j<height;j++) for(i0=0;i0<width;i0++) {
@@ -724,13 +724,21 @@ void donumbers(void) {
     else i=i0;
     if(isclear(i,j)) {
       if(isownmergerep(i,j)&&(gsq[i][j].sp.spor?gsq[i][j].sp.ten:dsp.ten)) gsq[i][j].goi=goi++;
-      for(d=0;d<ndir[gtype];d++)
+      for(d=0;d<ndir[gtype];d++){
         if(isstartoflight(i,j,d)) {
           if(!getlprop(i,j,d)->dnran) {gsq[i][j].number=num++; break;}
-          }
+        }   // if
+      }   // for d
+    }   // isclear
+    // Check for the start of a virtual light
+    for(v=0;v<nvl;v++) {
+      if(vls[v].x[0] == i &&  vls[v].y[0] == j)
+      {
+        if(!getvlprop(v)->dnran) {gsq[i][j].number=num++; break;}
       }
     }
-  }
+    }   // for i0
+  }   // for j
 
 // add word to filler data, starting at (i,j) in direction d
 // if d>=100, add virtual light #d-100
