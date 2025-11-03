@@ -25,6 +25,13 @@ all:: qxw
 deb:: qxw
 
 PKG_CONFIG ?= pkg-config
+
+# According to https://github.com/klochner/Qxw the following flags
+# "Fixed mac build".
+## CFLAGS := -Wall -fstack-protector --param=ssp-buffer-size=4 -Wformat -Wformat-security -Werror=format-security -Wno-deprecated-declarations `$(PKG_CONFIG) --cflags glib-2.0` `$(PKG_CONFIG) --cflags gtk+-2.0` -Wpedantic -Wextra -Wno-unused-parameter
+## CFLAGS := -Wall -fstack-protector --param=ssp-buffer-size=4 -Wformat -Wformat-security -Werror=format-security `$(PKG_CONFIG) --cflags glib-2.0` `$(PKG_CONFIG) --cflags gtk+-2.0` -I/usr/local/include
+## LFLAGS := -L/usr/local/lib `$(PKG_CONFIG) --libs glib-2.0` `$(PKG_CONFIG) --libs gtk+-2.0` -lm -ldl -lpcre -pthread -lgthread-2.0
+
 CFLAGS := -Wall -fstack-protector --param=ssp-buffer-size=4 -Wformat -Wformat-security -Werror=format-security -Wno-deprecated-declarations `$(PKG_CONFIG) --cflags glib-2.0` `$(PKG_CONFIG) --cflags gtk+-2.0` -I/opt/local/include `dpkg-buildflags --get CFLAGS` `dpkg-buildflags --get CPPFLAGS` -Wpedantic -Wextra -Wno-unused-parameter
 # CFLAGS := -Wall -fstack-protector --param=ssp-buffer-size=4 -Wformat -Wformat-security -Werror=format-security `$(PKG_CONFIG) --cflags glib-2.0` `$(PKG_CONFIG) --cflags gtk+-2.0` -I/opt/local/include
 LFLAGS := -Wl,-Bsymbolic-functions -Wl,-z,relro -L/opt/local/lib `$(PKG_CONFIG) --libs glib-2.0` `$(PKG_CONFIG) --libs gtk+-2.0` -lm -ldl -lpcre -pthread -lgthread-2.0 `dpkg-buildflags --get LDFLAGS`
