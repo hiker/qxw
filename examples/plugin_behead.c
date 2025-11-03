@@ -1,9 +1,7 @@
-// $Id: pluginexample1.c 80 2009-06-20 15:49:07Z mo $
-
 /*
 Qxw is a program to help construct and publish crosswords.
 
-Copyright 2011 Mark Owen
+Copyright 2011-2019 Mark Owen; Windows port by Peter Flippant
 http://www.quinapalus.com
 E-mail: qxw@quinapalus.com
 
@@ -27,7 +25,7 @@ Fifth Floor, Boston, MA  02110-1301, USA.
 
 
 
-// gcc -Wall plugin_behead.c -o plugin_behead.so -shared
+// gcc -Wall -fPIC plugin_behead.c -o plugin_behead.so -shared
 
 #include <qxw/qxwplugin.h>
 

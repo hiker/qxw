@@ -2,8 +2,10 @@
 Version=1.0
 Type=Application
 Name=Qxw
+Icon=qxw
 GenericName=Crossword editor
 Comment=Construct crossword puzzles
 Exec=/usr/games/qxw
 Terminal=false
 Categories=Game;LogicGame;
+Keywords=crossword;puzzle;grid;construction;wordgame;word;

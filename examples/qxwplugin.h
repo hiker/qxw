@@ -1,7 +1,7 @@
 /*
 Qxw is a program to help construct and publish crosswords.
 
-Copyright 2011-2020 Mark Owen; Windows port by Peter Flippant
+Copyright 2011-2019 Mark Owen; Windows port by Peter Flippant
 http://www.quinapalus.com
 E-mail: qxw@quinapalus.com
 

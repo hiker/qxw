@@ -1,7 +1,7 @@
 /*
 Qxw is a program to help construct and publish crosswords.
 
-Copyright 2011-2020 Mark Owen; Windows port by Peter Flippant
+Copyright 2011-2019 Mark Owen; Windows port by Peter Flippant
 http://www.quinapalus.com
 E-mail: qxw@quinapalus.com
 
@@ -22,16 +22,14 @@ write to the Free Software Foundation, Inc., 51 Franklin Street,
 Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#ifndef __FILLER_H__
-#define __FILLER_H__
 
-// control functions for filler called from main code
-extern void filler_init();
-extern void filler_finit();
-extern int filler_start(int mode);
-extern void filler_wait();
-extern void filler_stop();
-extern void getposs(struct entry*e,char*s,int r,int dash);
-extern int filler_status;
 
-#endif
+
+// gcc -Wall -fPIC plugin_behead.c -o plugin_behead.so -shared
+
+#include <qxw/qxwplugin.h>
+
+int treat(const char*answer) {
+  strcpy(light,answerICC+1);
+  return treatedanswerICC(light);
+  }

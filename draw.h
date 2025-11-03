@@ -1,9 +1,7 @@
-// $Id: draw.h -1   $
-
 /*
 Qxw is a program to help construct and publish crosswords.
 
-Copyright 2011 Mark Owen
+Copyright 2011-2020 Mark Owen; Windows port by Peter Flippant
 http://www.quinapalus.com
 E-mail: qxw@quinapalus.com
 
@@ -31,14 +29,45 @@ Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef __DRAW_H__
 #define __DRAW_H__
 
+#include <cairo.h>
+
+extern double gscale;
+
+// extern void moveto(cairo_t*cc,double x,double y);
+// extern void lineto(cairo_t*cc,double x,double y);
+// extern void rmoveto(cairo_t*cc,double x,double y);
+// extern void rlineto(cairo_t*cc,double x,double y);
+// extern void setlinewidth(cairo_t*cc,double w);
+// extern void setlinecap(cairo_t*cc,int c);
+// extern void closepath(cairo_t*cc);
+// extern void fill(cairo_t*cc);
+// extern void stroke(cairo_t*cc);
+// extern void strokepreserve(cairo_t*cc);
+// extern void clip(cairo_t*cc);
+extern void gsave(cairo_t*cc);
+extern void grestore(cairo_t*cc);
+// extern void setrgbcolor(cairo_t*cc,double r,double g, double b);
+// extern void setrgbacolor(cairo_t*cc,double r,double g, double b,double a);
+// extern void setfontstyle(cairo_t*cc,int fs);
+// extern void setfontsize(cairo_t*cc,double h);
+
+// extern void arc(cairo_t*cc,double x,double y,double r,double t0,double t1);
+// extern void arcn(cairo_t*cc,double x,double y,double r,double t0,double t1);
+// extern void setrgbcolor24(cairo_t*cc,int c);
+extern void ltext(cairo_t*cc,char*s,double h,int fs);
+extern void ctext(cairo_t*cc,char*s,double x,double y,double h,int fs,int ocm);
+
+extern void ansform(char*t0,int t0l,int ln,int wlen,unsigned int dmask);
+
 extern int bawdpx;
-extern int hbawdpx;
+// extern int hbawdpx;
 
 extern void draw_init();
 extern void draw_finit();
+extern void draw_printversions();
 extern void repaint(cairo_t*cr);
 
-extern void refreshsq(int x,int y);
+// extern void refreshsq(int x,int y);
 extern void refreshsqlist(int l,int*gx,int*gy);
 extern void refreshsqmg(int x,int y);
 extern void refreshsel();
@@ -53,12 +82,14 @@ extern int daheight(void);
 extern void a_exportg(char*fn,int f0,int f1);
 extern void a_exportgh(int f,char*url);
 extern void a_exporta(int f);
-extern void a_exporthp(int f);
+extern void a_exporthp(int f,int f0,int f1);
+extern void a_exportccwxml(char*fn);
 
-extern void edgecoords(float*x0,float*y0,float*x1,float*y1,int x,int y,int d);
-extern void addsqbbox(float*x0,float*y0,float*x1,float*y1,int x,int y);
-extern void getsqbbox(float*x0,float*y0,float*x1,float*y1,int x,int y);
-extern void getmgbbox(float*x0,float*y0,float*x1,float*y1,int x,int y);
-extern void mgcentre(float*u,float*v,int x,int y,int d,int l);
+extern void edgecoords(double*x0,double*y0,double*x1,double*y1,int x,int y,int d);
+// extern void getsqbbox(double*x0,double*y0,double*x1,double*y1,int x,int y);
+// extern void getmgbbox(double*x0,double*y0,double*x1,double*y1,int x,int y);
+extern void mgcentre(double*u,double*v,int x,int y,int d,int l);
+
+extern char*dname[NGTYPE][MAXNDIR];
 
 #endif

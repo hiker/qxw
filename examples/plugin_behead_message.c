@@ -1,9 +1,7 @@
-// $Id: pluginexample1.c 80 2009-06-20 15:49:07Z mo $
-
 /*
 Qxw is a program to help construct and publish crosswords.
 
-Copyright 2011 Mark Owen
+Copyright 2011-2019 Mark Owen; Windows port by Peter Flippant
 http://www.quinapalus.com
 E-mail: qxw@quinapalus.com
 
@@ -27,13 +25,13 @@ Fifth Floor, Boston, MA  02110-1301, USA.
 
 
 
-// gcc -Wall plugin_behead_message.c -o plugin_behead_message.so -shared
+// gcc -Wall -fPIC plugin_behead_message.c -o plugin_behead_message.so -shared
 
-#include <qxw/qxwplugin.h>
+#include "qxwplugin.h"
 
 int treat(const char*answer) {
-  if(clueorderindex>=strlen(treatmessageAZ[0])) return 0;
-  if(answer[0]!=treatmessageAZ[0][clueorderindex]) return 0;
-  strcpy(light,answer+1);
-  return treatedanswer(light);
+  if(msgcharICC[0]==ICC_DASH) return treatedanswerICC(answerICC); // no treatment if message character is "-"
+  if(answerICC[0]!=msgcharICC[0]) return 0;                       // starts with the right character?
+  strcpy(light,answerICC+1);
+  return treatedanswerICC(light);
   }

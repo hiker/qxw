@@ -22,16 +22,17 @@ write to the Free Software Foundation, Inc., 51 Franklin Street,
 Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#ifndef __FILLER_H__
-#define __FILLER_H__
 
-// control functions for filler called from main code
-extern void filler_init();
-extern void filler_finit();
-extern int filler_start(int mode);
-extern void filler_wait();
-extern void filler_stop();
-extern void getposs(struct entry*e,char*s,int r,int dash);
-extern int filler_status;
+#ifndef __ALPHABETS_H__
+#define __ALPHABETS_H__
+
+#define NALPHAINIT 20
+#define ALPHABET_AZ 0
+#define ALPHABET_09 1
+#define ALPHABET_AZ09 2
+#define NALPHACODES 5
+
+extern const char*alphaname[NALPHAINIT][NALPHACODES+1];
+extern struct alphaentry alphainitdata[NALPHAINIT][MAXICC];
 
 #endif

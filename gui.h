@@ -1,9 +1,7 @@
-// $Id: gui.h -1   $
-
 /*
 Qxw is a program to help construct and publish crosswords.
 
-Copyright 2011 Mark Owen
+Copyright 2011-2020 Mark Owen; Windows port by Peter Flippant
 http://www.quinapalus.com
 E-mail: qxw@quinapalus.com
 
@@ -35,28 +33,28 @@ Fifth Floor, Boston, MA  02110-1301, USA.
 #define BAWD .139    // width of bar
 
 extern int selmode;
+extern int nsel;
 extern int pxsq; // pixels per square on display
+
+extern void setfilenamebase(char*s);
 
 extern void startgtk(void);
 extern void stopgtk(void);
 
+// all externally-callable functions respect the global variable usegui
 extern void invaldarect(int x0,int y0,int x1,int y1);
 extern void invaldaall(void);
 
 extern void stats_upd(void);
 extern void syncgui(void);
-extern void okbox(const char*t);
 extern void fserror(void);
-extern void oomerr(void);
 extern void fsgerr(void);
 extern void reperr(const char*s);
-extern int areyousure(void);
-extern void setbname(char*s);
+extern void repwarn(const char*s);
 
-extern void gridchange(void);
-
-extern void killcurrdia(void);
+extern void killfipdia(void);
 extern void setposslabel(char*s);
+extern void updatefeas(void);
 
 
 #endif

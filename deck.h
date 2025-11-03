@@ -22,16 +22,11 @@ write to the Free Software Foundation, Inc., 51 Franklin Street,
 Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#ifndef __FILLER_H__
-#define __FILLER_H__
 
-// control functions for filler called from main code
-extern void filler_init();
-extern void filler_finit();
-extern int filler_start(int mode);
-extern void filler_wait();
-extern void filler_stop();
-extern void getposs(struct entry*e,char*s,int r,int dash);
-extern int filler_status;
+#ifndef __DECK_H__
+#define __DECK_H__
+
+extern int loaddeck(int cldict);
+extern int dumpdeck();
 
 #endif
